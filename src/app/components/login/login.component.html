@@ -1,0 +1,41 @@
+<form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+  <p-card header="Login" [style]="{ width: '480px'}">
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="text" 
+             pInputText 
+             formControlName="email" 
+             class="w-full" 
+             name="email" 
+             placeholder="Type your email">
+    </div>
+    <small *ngIf="email?.invalid && (email?.dirty || email?.touched)" 
+           class="block p-error">
+      <div *ngIf="email?.errors?.['required']">Email is Required</div>
+      <div *ngIf="email?.errors?.['email']">Email should be Valid</div>
+    </small>
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" 
+             pInputText 
+             formControlName="password" 
+             class="w-full" 
+             name="password" 
+             placeholder="Type your password">
+      <small *ngIf="password?.invalid && (password?.dirty || password?.touched)" 
+             class="block p-error">
+        <div *ngIf="password?.errors?.['required']">Password is Required</div>
+      </small>
+    </div>
+    <p-button label="SIGN IN" 
+      styleClass="w-full" 
+      [disabled]="loginForm.invalid"
+      type="submit">
+    </p-button>
+    <div class="mt-2">Bireysel Kullanıcı Login <a routerLink="/register">Register</a></div>
+    <div class="mt-2">Kurumsal Kullanıcı Login <a routerLink="/registerkurumsal">Register Kurumsal</a></div>
+  </p-card>    
+
+  <!-- Toast bileşenini ekleyin -->
+  <p-toast></p-toast>
+</form>
