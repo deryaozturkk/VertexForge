@@ -70,7 +70,7 @@ export class RegisterComponent {
      return this.registerForm.get('occupation'); 
     }
 
-  get password() {
+  get sifre() {
     return this.registerForm.controls['sifre'];
   }
 

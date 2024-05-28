@@ -30,7 +30,7 @@ import { ToastModule } from 'primeng/toast';
 export class LoginComponent {
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]]
+    sifre: ['', [Validators.required]]
   });
 
   constructor(
@@ -43,13 +43,13 @@ export class LoginComponent {
   get email() {
     return this.loginForm.controls['email'];
   }
-  get password() {
-    return this.loginForm.controls['password'];
+  get sifre() {
+    return this.loginForm.controls['sifre'];
   }
 
   loginUser() {
-    const { email, password } = this.loginForm.value;
-    this.authService.login({ email, sifre: password }).subscribe(
+    const { email, sifre } = this.loginForm.value;
+    this.authService.login({ email, sifre: sifre }).subscribe(
       (response: any) => {
         if (response.token) {
           localStorage.setItem('access_token', response.token);

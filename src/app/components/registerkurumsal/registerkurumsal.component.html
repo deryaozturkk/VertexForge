@@ -1,6 +1,9 @@
+<head>
+    <!-- Diğer meta etiketleri buraya gelebilir -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
 <form [formGroup]="registerKurumsalForm" (ngSubmit)="submitKurumsalDetails()">
     <p-card header="Register Kurumsal" [style]="{ width: '480px'}">
-
 
         <div class="field">
             <label for="name">Name</label>
@@ -12,13 +15,12 @@
                 name="name" 
                 placeholder="Type your name">
             <small 
-                *ngIf="name?.invalid && (name?.dirty || name?.touched)" 
+                *ngIf="registerKurumsalForm.get('name')?.invalid && (registerKurumsalForm.get('name')?.dirty || registerKurumsalForm.get('name')?.touched)" 
                 class="block p-error">
-    
-                <div *ngIf="name?.errors?.['required']">Name is Required</div>
-                <div *ngIf="name?.errors?.['pattern']">Enter a valid name</div>
+                <div *ngIf="registerKurumsalForm.get('name')?.errors?.['required']">Name is Required</div>
+                <div *ngIf="registerKurumsalForm.get('name')?.errors?.['pattern']">Enter a valid name</div>
             </small>
-          </div>
+        </div>
 
         <div class="field">
             <label for="surname">Surname</label>
@@ -30,117 +32,107 @@
                 name="surname" 
                 placeholder="Type your surname">
             <small 
-                *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)" 
+                *ngIf="registerKurumsalForm.get('surname')?.invalid && (registerKurumsalForm.get('surname')?.dirty || registerKurumsalForm.get('surname')?.touched)" 
                 class="block p-error">
-    
-                <div *ngIf="surname?.errors?.['required']">Surname is Required</div>
-                <div *ngIf="surname?.errors?.['pattern']">Enter a valid surname</div>
+                <div *ngIf="registerKurumsalForm.get('surname')?.errors?.['required']">Surname is Required</div>
+                <div *ngIf="registerKurumsalForm.get('surname')?.errors?.['pattern']">Enter a valid surname</div>
             </small>
-          </div>
+        </div>
           
-          <div class="field">
-        <label for="email">Email</label>
-        <input 
-            type="text" 
-            pInputText 
-            formControlName="email" 
-            class="w-full" 
-            name="email" 
-            placeholder="Type your email">
-        <small 
-            *ngIf="email?.invalid && (email?.dirty || email?.touched)" 
-            class="block p-error">
+        <div class="field">
+            <label for="email">Email</label>
+            <input 
+                type="text" 
+                pInputText 
+                formControlName="email" 
+                class="w-full" 
+                name="email" 
+                placeholder="Type your email">
+            <small 
+                *ngIf="registerKurumsalForm.get('email')?.invalid && (registerKurumsalForm.get('email')?.dirty || registerKurumsalForm.get('email')?.touched)" 
+                class="block p-error">
+                <div *ngIf="registerKurumsalForm.get('email')?.errors?.['required']">Email is Required</div>
+                <div *ngIf="registerKurumsalForm.get('email')?.errors?.['email']">Email should be Valid</div>
+            </small>
+        </div>
 
-            <div *ngIf="email?.errors?.['required']">Email is Required</div>
-            <div *ngIf="email?.errors?.['email']">Email should be Valid</div>
-        </small>
-      </div>
+        <div class="field">
+            <label for="phoneNumber">Phone Number</label>
+            <input 
+                type="text" 
+                pInputText 
+                formControlName="phoneNumber" 
+                class="w-full" 
+                name="phoneNumber" 
+                placeholder="Type your phone number">
+            <small 
+                *ngIf="registerKurumsalForm.get('phoneNumber')?.invalid && (registerKurumsalForm.get('phoneNumber')?.dirty || registerKurumsalForm.get('phoneNumber')?.touched)" 
+                class="block p-error">
+                <div *ngIf="registerKurumsalForm.get('phoneNumber')?.errors?.['required']">Phone Number is Required</div>
+                <div *ngIf="registerKurumsalForm.get('phoneNumber')?.errors?.['pattern']">Enter a valid phone number</div>
+            </small>
+        </div>
 
-      <div class="field">
-        <label for="phoneNumber">Phone Number</label>
-        <input 
-            type="text" 
-            pInputText 
-            formControlName="phoneNumber" 
-            class="w-full" 
-            name="phoneNumber" 
-            placeholder="Type your phone number">
-        <small 
-            *ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)" 
-            class="block p-error">
-            <div *ngIf="phoneNumber?.errors?.['required']">Phone Number is Required</div>
-            <div *ngIf="phoneNumber?.errors?.['pattern']">Enter a valid phone number</div>
-        </small>
-    </div>
+        <div class="field">
+            <label for="department">Department</label>
+            <input 
+                type="text" 
+                pInputText 
+                formControlName="department" 
+                class="w-full" 
+                name="department" 
+                placeholder="Type your department">
+            <small 
+                *ngIf="registerKurumsalForm.get('department')?.invalid && (registerKurumsalForm.get('department')?.dirty || registerKurumsalForm.get('department')?.touched)" 
+                class="block p-error">
+                <div *ngIf="registerKurumsalForm.get('department')?.errors?.['required']">Department is Required</div>
+            </small>
+        </div>
 
-
-    <div class="field">
-        <label for="department">Department</label>
-        <input 
-            type="text" 
-            pInputText 
-            formControlName="department" 
-            class="w-full" 
-            name="department" 
-            placeholder="Type your department">
-        <small 
-            *ngIf="department?.invalid && (department?.dirty || department?.touched)" 
-            class="block p-error">
-            <div *ngIf="department?.errors?.['required']">Department is Required</div>
-        </small>
-    </div>
-
-      <div class="field">
-        <label for="password">Password</label>
-        <input 
-            type="password" 
-            pInputText 
-            formControlName="sifre" 
-            class="w-full" 
-            name="password" 
-            placeholder="Type your password">
-        <small 
-            *ngIf="password?.invalid && (password?.dirty || password?.touched)" 
-            class="block p-error">
-            <div *ngIf="password?.errors?.['required']">Password is Required</div>
-        </small>
-      </div>
-
-      <div class="field">
-        <label for="confirmPassword">Confirm Password</label>
-        <input 
-            type="password" 
-            pInputText 
-            formControlName="confirmPassword" 
-            class="w-full" 
-            name="confirmPassword" 
-            placeholder="Confirm password">
-        <small 
-            *ngIf="
-            confirmPassword?.invalid && 
-            (confirmPassword?.dirty || confirmPassword?.touched)" 
-            class="block p-error">
-
-            <div *ngIf="confirmPassword?.errors?.['required']">
-                Confirm the password
-            </div>
-        </small>
-        <small
-        class="block p-error"
-        *ngIf="registerKurumsalForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid">
-        Password should match
-        </small>
-    </div>
-
+        <div class="field">
+            <label for="password">Password</label>
+            <input 
+                type="password" 
+                pInputText 
+                formControlName="sifre" 
+                class="w-full" 
+                name="password" 
+                placeholder="Type your password">
+            <small 
+                *ngIf="registerKurumsalForm.get('sifre')?.invalid && (registerKurumsalForm.get('sifre')?.dirty || registerKurumsalForm.get('sifre')?.touched)" 
+                class="block p-error">
+                <div *ngIf="registerKurumsalForm.get('sifre')?.errors?.['required']">Password is Required</div>
+            </small>
+        </div>
+        
+        <div class="field">
+            <label for="confirmPassword">Confirm Password</label>
+            <input 
+                type="password" 
+                pInputText 
+                formControlName="confirmPassword" 
+                class="w-full" 
+                name="confirmPassword" 
+                placeholder="Confirm password">
+            <small 
+                *ngIf="registerKurumsalForm.get('confirmPassword')?.invalid && 
+                (registerKurumsalForm.get('confirmPassword')?.dirty || registerKurumsalForm.get('confirmPassword')?.touched)" 
+                class="block p-error">
+                <div *ngIf="registerKurumsalForm.get('confirmPassword')?.errors?.['required']">Confirm the password</div>
+            </small>
+            <small
+                class="block p-error"
+                *ngIf="registerKurumsalForm?.errors?.['passwordMismatch'] && registerKurumsalForm.get('confirmPassword')?.valid && registerKurumsalForm.get('sifre')?.valid">
+                Password should match
+            </small>
+        </div>        
+             
         <p-button 
-        label="Register Kurumsal" 
-        styleClass="w-full" 
-        [disabled]="registerKurumsalForm.invalid"
-        type="submit">
+            label="Register Kurumsal" 
+            styleClass="w-full" 
+            [disabled]="registerKurumsalForm.invalid"
+            type="submit">
         </p-button>
         
-    
-      <div class="mt-2">Already a member? <a routerLink="/login">Login</a></div>
-    </p-card>    
-  </form>
-  
+        <div class="mt-2">Already a member? <a routerLink="/login">Login</a></div>
+        

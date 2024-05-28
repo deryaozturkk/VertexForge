@@ -15,16 +15,16 @@
       <div *ngIf="email?.errors?.['email']">Email should be Valid</div>
     </small>
     <div class="field">
-      <label for="password">Password</label>
+      <label for="sifre">Password</label>
       <input type="password" 
              pInputText 
-             formControlName="password" 
+             formControlName="sifre" 
              class="w-full" 
-             name="password" 
+             name="sifre" 
              placeholder="Type your password">
-      <small *ngIf="password?.invalid && (password?.dirty || password?.touched)" 
+      <small *ngIf="sifre?.invalid && (sifre?.dirty || sifre?.touched)" 
              class="block p-error">
-        <div *ngIf="password?.errors?.['required']">Password is Required</div>
+        <div *ngIf="sifre?.errors?.['required']">Password is Required</div>
       </small>
     </div>
     <p-button label="SIGN IN" 
@@ -32,8 +32,8 @@
       [disabled]="loginForm.invalid"
       type="submit">
     </p-button>
-    <div class="mt-2">Bireysel Kullanıcı Login <a routerLink="/register">Register</a></div>
-    <div class="mt-2">Kurumsal Kullanıcı Login <a routerLink="/registerkurumsal">Register Kurumsal</a></div>
+    <div class="mt-2">Individual User Register <a routerLink="/register">Register</a></div>
+    <div class="mt-2">Corporate User Register <a routerLink="/registerkurumsal">Register Kurumsal</a></div>
   </p-card>    
 
   <!-- Toast bileşenini ekleyin -->
