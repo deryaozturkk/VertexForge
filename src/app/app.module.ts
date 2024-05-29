@@ -16,18 +16,22 @@ import { BrowserAnimationsModule, provideAnimations } from "@angular/platform-br
 import { MessageService } from "primeng/api";
 import { AuthService } from './services/auth.service';
 import { RegisterKurumsalComponent } from "./components/registerkurumsal/registerkurumsal.component";
+import { CommonModule } from "@angular/common";
+import { NavbarComponent } from "./components/navbar/navbar.component";
 
 @NgModule({
     declarations: [
+        //AppComponent
         // Standalone bileşenler burada olmamalıdır
     ],
+
     imports: [
         BrowserModule,
         AppRoutingModule,
         RouterModule,
-        AppComponent,
         LoginComponent,
         HomeComponent,
+        AppComponent,
         RegisterComponent,
         RegisterKurumsalComponent,
         TaskListComponent,
@@ -35,13 +39,16 @@ import { RegisterKurumsalComponent } from "./components/registerkurumsal/registe
         ReactiveFormsModule,
         ButtonModule,
         ToastModule,
-        BrowserAnimationsModule
+        CommonModule,
+        BrowserAnimationsModule,
+        NavbarComponent
     ],
     providers: [
         MessageService,
         AuthService,          
     ],
-    //bootstrap :[AppComponent]// önceden çalışıyodu ama hata verdiği için chatgptnin sözü ile kapattım
+    //bootstrap :[AppComponent]
+    // önceden çalışıyodu ama hata verdiği için chatgptnin sözü ile kapattım
     
 })
 

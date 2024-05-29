@@ -1,12 +1,12 @@
 import {
   ObjectUtils,
   PrimeNGConfig
-} from "./chunk-O4RLN2GN.js";
+} from "./chunk-C6BOPNZM.js";
 import {
   CommonModule,
   DOCUMENT,
   isPlatformBrowser
-} from "./chunk-ZMSMAJUA.js";
+} from "./chunk-CLFKRVZH.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -32,9 +32,9 @@ import {
   ɵɵdirectiveInject,
   ɵɵprojection,
   ɵɵprojectionDef
-} from "./chunk-LCJGC3F7.js";
+} from "./chunk-XHMXEJF3.js";
 
-// ../node_modules/primeng/fesm2022/primeng-dom.mjs
+// node_modules/primeng/fesm2022/primeng-dom.mjs
 var DomHandler = class _DomHandler {
   static zindex = 1e3;
   static calculatedScrollbarWidth = null;
@@ -710,7 +710,7 @@ var DomHandler = class _DomHandler {
   }
 };
 
-// ../node_modules/primeng/fesm2022/primeng-ripple.mjs
+// node_modules/primeng/fesm2022/primeng-ripple.mjs
 var Ripple = class _Ripple {
   document;
   platformId;
@@ -877,7 +877,7 @@ var RippleModule = class _RippleModule {
   }], null, null);
 })();
 
-// ../node_modules/primeng/fesm2022/primeng-baseicon.mjs
+// node_modules/primeng/fesm2022/primeng-baseicon.mjs
 var _c0 = ["*"];
 var BaseIcon = class _BaseIcon {
   label;
@@ -959,4 +959,4 @@ export {
   Ripple,
   RippleModule
 };
-//# sourceMappingURL=chunk-KKXUA5NP.js.map
+//# sourceMappingURL=chunk-USSJYOC7.js.map

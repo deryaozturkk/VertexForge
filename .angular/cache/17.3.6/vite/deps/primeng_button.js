@@ -3,13 +3,13 @@ import {
   DomHandler,
   Ripple,
   RippleModule
-} from "./chunk-KKXUA5NP.js";
+} from "./chunk-USSJYOC7.js";
 import {
   ObjectUtils,
   PrimeTemplate,
   SharedModule,
   UniqueComponentId
-} from "./chunk-O4RLN2GN.js";
+} from "./chunk-C6BOPNZM.js";
 import {
   CommonModule,
   DOCUMENT,
@@ -18,7 +18,7 @@ import {
   NgStyle,
   NgTemplateOutlet,
   isPlatformBrowser
-} from "./chunk-ZMSMAJUA.js";
+} from "./chunk-CLFKRVZH.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -69,9 +69,9 @@ import {
   ɵɵtemplate,
   ɵɵtext,
   ɵɵtextInterpolate
-} from "./chunk-LCJGC3F7.js";
+} from "./chunk-XHMXEJF3.js";
 
-// ../node_modules/primeng/fesm2022/primeng-icons-spinner.mjs
+// node_modules/primeng/fesm2022/primeng-icons-spinner.mjs
 var SpinnerIcon = class _SpinnerIcon extends BaseIcon {
   pathId;
   ngOnInit() {
@@ -139,7 +139,7 @@ var SpinnerIcon = class _SpinnerIcon extends BaseIcon {
   }], null, null);
 })();
 
-// ../node_modules/primeng/fesm2022/primeng-autofocus.mjs
+// node_modules/primeng/fesm2022/primeng-autofocus.mjs
 var AutoFocus = class _AutoFocus {
   /**
    * When present, it specifies that the component should automatically get focus on load.
@@ -235,7 +235,7 @@ var AutoFocusModule = class _AutoFocusModule {
   }], null, null);
 })();
 
-// ../node_modules/primeng/fesm2022/primeng-button.mjs
+// node_modules/primeng/fesm2022/primeng-button.mjs
 var _c0 = ["*"];
 var _c1 = (a0) => ({
   class: a0

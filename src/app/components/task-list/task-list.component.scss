@@ -1,0 +1,20 @@
+.kanban-board {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .kanban-column {
+    width: 30%;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .kanban-task {
+    background-color: white;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
