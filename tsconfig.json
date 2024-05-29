@@ -23,7 +23,9 @@
     ],
     "baseUrl": "./src", // Base URL is set to the 'src' directory
     "paths": {
-      "@interfaces/*": ["app/interfaces/*"] // Aliases for interface imports
+      "@interfaces/*": ["app/interfaces/*"], // Aliases for interface imports
+      "@models/*": ["../backend/models/*"]
+
     }
   },
   "angularCompilerOptions": {

@@ -17,3 +17,8 @@ export interface User {
     password:string;
 }
 
+export interface List {
+  id?: number;
+  boardId: number;
+  title: string;
+}

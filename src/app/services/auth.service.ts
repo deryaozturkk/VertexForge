@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, UserKurumsal } from '../interfaces/auth';
+import { User, UserKurumsal, List} from '../interfaces/auth';
+import { Task } from '@models/Task';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -13,6 +14,7 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
+  //User methods
   registerUser(userDetails: User) {
     return this.http.post(`${this.baseUrl}/auth/register`, userDetails);
   }
@@ -27,4 +29,41 @@ export class AuthService {
   registerkurumsalUser(userKurumsalDetails: UserKurumsal) {
     return this.http.post(`${this.baseUrl}/auth/registerkurumsal`, userKurumsalDetails);
   }
+
+// Task methods
+  getTask(): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.baseUrl}`);
+  }
+
+  createTask(task: Task): Observable<Task> {
+    return this.http.post<Task>(`${this.baseUrl}/createTask`, task);
+  }
+
+  updateTask(task: Task): Observable<Task> {
+    return this.http.put<Task>(`${this.baseUrl}/updateTask/${task.id}`, task);
+  }
+
+  deleteTask(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/deleteTask/${id}`);
+  }
+// List methods
+createList(list: List): Observable<List> {
+  return this.http.post<List>(`${this.baseUrl}/list/createList`, list);
 }
+
+getList(id: number): Observable<List> {
+  return this.http.get<List>(`${this.baseUrl}/list/getList/${id}`);
+}
+
+updateList(list: List): Observable<List> {
+  return this.http.put<List>(`${this.baseUrl}/list/updateList/${list.id}`, list);
+}
+
+deleteList(id: number): Observable<void> {
+  return this.http.delete<void>(`${this.baseUrl}/list/deleteList/${id}`);
+}
+
+}
+
+
+

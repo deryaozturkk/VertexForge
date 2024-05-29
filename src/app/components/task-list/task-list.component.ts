@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { TaskService } from '../services/task.service';
-import { Task } from '../../../../backend/models/task.model';
+import { AuthService } from '../../services/auth.service';
+import { Task } from '@models/Task';
 
 @Component({
   selector: 'app-task-list',
@@ -16,14 +16,14 @@ export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
   columns = ['To Do', 'In Progress', 'Done'];
 
-  constructor(private taskService: TaskService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.fetchTasks();
+    this.fetchData();
   }
 
-  fetchTasks() {
-    this.taskService.getTasks().subscribe((tasks: Task[]) => {
+  fetchData() {
+    this.authService.getTask().subscribe((tasks: Task[]) => { // 'getTasks' metodu çağrılmalı
       this.tasks = tasks;
     });
   }
@@ -34,8 +34,8 @@ export class TaskListComponent implements OnInit {
 
   updateTaskStatus(task: Task, status: string) {
     task.status = status;
-    this.taskService.updateTask(task).subscribe(updatedTask => {
-      this.fetchTasks();
+    this.authService.updateTask(task).subscribe(updatedTask => {
+      this.fetchData();
     });
   }
 }

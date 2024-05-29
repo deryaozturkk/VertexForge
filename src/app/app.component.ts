@@ -4,11 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterModule,ToastModule,CommonModule],
+  imports: [RouterOutlet,RouterModule,ToastModule,CommonModule,NavbarComponent],
   templateUrl: './app.component.html',
   styleUrls: ["./app.component.scss"],
   providers: [MessageService]
