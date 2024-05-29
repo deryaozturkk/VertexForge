@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import BireyselRoute from './routes/bireyselRoute.js';
 import KurumsalRoute from './routes/kurumsalRoute.js';
 import AuthRoute from './routes/authRoute.js';
+import listRoute from './routes/listRoute.js';
+import taskRoute from './routes/taskRoute.js';
 import http from 'http';
 
 /*
@@ -51,6 +53,8 @@ app.get('/', (_, res) => { res.json({ message: "welcome vertexforge" }) })
 app.use('/Bireysel', BireyselRoute);
 app.use('/Kurumsal', KurumsalRoute);
 app.use('/auth', AuthRoute);
+app.use('/list', listRoute);
+app.use('/task', taskRoute);
 
 import { login, register, registerkurumsal, verifyToken } from './controllers/authController.js'; // Relative path used here
 

@@ -2,6 +2,8 @@ import dbConfig from '../config/config.js';
 import { Sequelize, DataTypes } from 'sequelize';
 import bireyselModel from './Bireysel.js';
 import kurumsalModel from './Kurumsal.js';
+import TaskModel from './Task.js';
+import ListModel from './List.js';
 //import studentCounterModel from './StudentCounter.js';
 /*
   Sequelize için yapılandırma dosyasını çağırdık.
@@ -51,6 +53,8 @@ db.sequelize = sequelize;
 
 db.bireysel = bireyselModel(sequelize, DataTypes);
 db.kurumsal = kurumsalModel(sequelize, DataTypes);
+db.task = TaskModel(sequelize, DataTypes);
+db.list = ListModel(sequelize, DataTypes);
 //db.studentCounter = studentCounterModel(sequelize, DataTypes);
 
 /* Yeni modelleri veri tabanına ekleme işlemleri:
@@ -64,6 +68,11 @@ db.kurumsal = kurumsalModel(sequelize, DataTypes);
   //foreignKey: 'deptid',
   //as: 'department', 
 //});
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+      db[modelName].associate(db);
+  }
+});
 
 //db.department.hasMany(db.student, {
   //foreignKey: 'deptid',
