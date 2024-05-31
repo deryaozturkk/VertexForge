@@ -43,6 +43,7 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
         BrowserAnimationsModule,
         NavbarComponent,
         HttpClientModule
+        
     ],
     providers: [
         MessageService,

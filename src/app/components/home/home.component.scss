@@ -1,75 +1,217 @@
-/* home.component.css */
 .container {
-    display: flex;
-    height: 100vh;
-  }
-  
-  .sidebar {
-    width: 200px;
-    background-color: #f4f4f4;
-    padding: 10px;
-    border-right: 1px solid #ccc;
-  }
-  
-  .sidebar h3 {
-    margin-top: 0;
-  }
-  
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sidebar li {
-    padding: 10px;
-    background-color: #e0e0e0;
-    margin-bottom: 5px;
-    cursor: pointer;
-  }
-  
-  .sidebar .add-board-btn {
-    background-color: #b6fcb6;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .kanban-board {
-    flex: 1;
-    display: flex;
-    padding: 10px;
-    overflow-x: auto;
-  }
-  
-  .column {
-    flex: 1;
-    margin: 0 10px;
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
-  
-  .column h3 {
-    margin-top: 0;
-  }
-  
-  .task {
-    background-color: #e0e0e0;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 3px;
-  }
-  
-  .todo {
-    color: red;
-  }
-  
-  .in-progress {
-    color: yellow;
-  }
-  
-  .done {
-    color: green;
-  }
+  display: flex;
+  flex-direction: row; /* İçerik yatay olarak hizalansın */
+  justify-content: flex-start; /* İçerik soldan başlayarak hizalansın */
+  align-items: flex-start; /* İçerik üst tarafta hizalansın */
+  height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  background-color: #e0e0e0;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.sidebar .add-board-btn {
+  background-color: #b6fcb6;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.kanban-board {
+  display: flex;
+  flex-direction: row; /* İçerik yatay olarak hizalansın */
+  flex-wrap: nowrap; /* İçerik sığdığı kadar düz bir şekilde kalsın */
+  justify-content: center; /* İçerik yatayda ortalanmış olsun */
+  padding: 10px;
+  overflow-x: auto;
+  flex-grow: 1;
+}
+
+.column {
+  flex: 1;
+  margin: 0 10px;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.column h3 {
+  margin-top: 0;
+}
+
+.task {
+  background-color: #e0e0e0;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+
+.todo {
+  color: red;
+}
+
+.in-progress {
+  color: rgb(0, 157, 255);
+}
+
+.done {
+  color: green;
+}
+
+.add-board-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px; /* Ekleme dialogunu biraz aşağı kaydır */
+}
+
+.add-board-dialog input {
+  margin-bottom: 10px; /* Alt boşluk */
+  padding: 10px; /* İç boşluk */
+  border: 1px solid #ccc; /* Kenarlık */
+  border-radius: 3px; /* Köşeleri yuvarla */
+  width: 100%; /* Genişliği tam yap */
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.dialog-buttons button {
+  background-color: #4CAF50; /* Yeşil arka plan */
+  color: white; /* Beyaz yazı rengi */
+  border: none;
+  padding: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  flex: 1;
+  margin: 0 5px;
+}
+
+.dialog-buttons button:nth-child(2) {
+  background-color: #f44336; /* Kırmızı arka plan */
+}
+
+.task-board {
+  width: 200px;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-left: 1px solid #ccc;
+  margin-left: 10px; /* Kanban Board ve Task Board arasında boşluk bırakmak için */
+}
+
+.task-board h3 {
+  margin-top: 0;
+}
+
+.task-board .add-task-btn {
+  background-color: #b6fcb6;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 5px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.add-subtask-btn {
+  background-color: #4CAF50; /* Yeşil arka plan */
+  color: white; /* Beyaz yazı rengi */
+  border: none;
+  padding: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.submit-task-btn {
+  background-color: #4CAF50; /* Yeşil arka plan */
+  color: white; /* Beyaz yazı rengi */
+  border: none;
+  padding: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100%;
+}
