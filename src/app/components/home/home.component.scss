@@ -1,0 +1,75 @@
+/* home.component.css */
+.container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 200px;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+  }
+  
+  .sidebar h3 {
+    margin-top: 0;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    padding: 10px;
+    background-color: #e0e0e0;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+  
+  .sidebar .add-board-btn {
+    background-color: #b6fcb6;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .kanban-board {
+    flex: 1;
+    display: flex;
+    padding: 10px;
+    overflow-x: auto;
+  }
+  
+  .column {
+    flex: 1;
+    margin: 0 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .column h3 {
+    margin-top: 0;
+  }
+  
+  .task {
+    background-color: #e0e0e0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+  }
+  
+  .todo {
+    color: red;
+  }
+  
+  .in-progress {
+    color: yellow;
+  }
+  
+  .done {
+    color: green;
+  }

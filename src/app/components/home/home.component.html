@@ -1,2 +1,35 @@
 <p>home works!</p>
+
+<!-- home.component.html -->
+<div class="container">
+    <div class="sidebar">
+      <h3>Boards(4)</h3>
+      <ul>
+        <li>Board 0</li>
+        <li>Board 1</li>
+        <li>Board 2</li>
+        <li>Board 3</li>
+      </ul>
+      <button class="add-board-btn">+ Yeni Board Ekle</button>
+    </div>
+    <div class="kanban-board">
+      <div class="column">
+        <h3 class="todo">Yapılacaklar(4)</h3>
+        <div class="task">Lorem ipsum dolor sit amet...</div>
+        <div class="task">Lorem ipsum dolor sit amet...</div>
+        <div class="task">Lorem ipsum dolor sit amet...</div>
+        <div class="task">Lorem ipsum dolor sit amet...</div>
+      </div>
+      <div class="column">
+        <h3 class="in-progress">Şu anda yapılanlar(2)</h3>
+        <div class="task">Lorem ipsum dolor sit amet...</div>
+        <div class="task">Lorem ipsum dolor sit amet...</div>
+      </div>
+      <div class="column">
+        <h3 class="done">Tamamlananlar(1)</h3>
+        <div class="task">Lorem ipsum dolor sit amet...</div>
+      </div>
+    </div>
+  </div>
+  
 <p-button label="Sign Out" (onClick)="logOut()"></p-button>
