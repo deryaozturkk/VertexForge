@@ -1,20 +1,19 @@
-.kanban-board {
-    display: flex;
-    justify-content: space-between;
+.task-column {
+  background-color: #f1f1f1;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.task {
+  &.to-do {
+    border-left: 5px solid #ffc107;
   }
-  
-  .kanban-column {
-    width: 30%;
-    background-color: #f4f4f4;
-    padding: 10px;
-    border-radius: 5px;
+
+  &.in-progress {
+    border-left: 5px solid #17a2b8;
   }
-  
-  .kanban-task {
-    background-color: white;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &.done {
+    border-left: 5px solid #28a745;
   }
-  
+}
