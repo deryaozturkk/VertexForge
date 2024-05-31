@@ -41,7 +41,8 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
         ToastModule,
         CommonModule,
         BrowserAnimationsModule,
-        NavbarComponent
+        NavbarComponent,
+        HttpClientModule
     ],
     providers: [
         MessageService,
