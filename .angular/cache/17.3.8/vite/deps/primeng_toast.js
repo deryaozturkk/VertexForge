@@ -1,4 +1,10 @@
 import {
+  BaseIcon,
+  DomHandler,
+  Ripple,
+  RippleModule
+} from "./chunk-7LG5NNSX.js";
+import {
   animate,
   animateChild,
   query,
@@ -8,11 +14,14 @@ import {
   trigger
 } from "./chunk-MGILMXNN.js";
 import {
-  BaseIcon,
-  DomHandler,
-  Ripple,
-  RippleModule
-} from "./chunk-C2D4WPIU.js";
+  CommonModule,
+  DOCUMENT,
+  NgClass,
+  NgForOf,
+  NgIf,
+  NgStyle,
+  NgTemplateOutlet
+} from "./chunk-DDP3TGVP.js";
 import {
   MessageService,
   ObjectUtils,
@@ -22,15 +31,6 @@ import {
   UniqueComponentId,
   zindexutils
 } from "./chunk-Y76JIUY2.js";
-import {
-  CommonModule,
-  DOCUMENT,
-  NgClass,
-  NgForOf,
-  NgIf,
-  NgStyle,
-  NgTemplateOutlet
-} from "./chunk-DDP3TGVP.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,

@@ -1,11 +1,11 @@
 import {
-  ObjectUtils,
-  PrimeNGConfig
-} from "./chunk-Y76JIUY2.js";
-import {
   DOCUMENT,
   isPlatformBrowser
 } from "./chunk-DDP3TGVP.js";
+import {
+  ObjectUtils,
+  PrimeNGConfig
+} from "./chunk-Y76JIUY2.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -951,9 +951,9 @@ var BaseIcon = class _BaseIcon {
 })();
 
 export {
-  DomHandler,
   BaseIcon,
+  DomHandler,
   Ripple,
   RippleModule
 };
-//# sourceMappingURL=chunk-C2D4WPIU.js.map
+//# sourceMappingURL=chunk-7LG5NNSX.js.map

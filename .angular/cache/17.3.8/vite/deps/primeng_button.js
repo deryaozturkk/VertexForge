@@ -2,13 +2,7 @@ import {
   BaseIcon,
   DomHandler,
   Ripple
-} from "./chunk-C2D4WPIU.js";
-import {
-  ObjectUtils,
-  PrimeTemplate,
-  SharedModule,
-  UniqueComponentId
-} from "./chunk-Y76JIUY2.js";
+} from "./chunk-7LG5NNSX.js";
 import {
   DOCUMENT,
   NgClass,
@@ -17,6 +11,12 @@ import {
   NgTemplateOutlet,
   isPlatformBrowser
 } from "./chunk-DDP3TGVP.js";
+import {
+  ObjectUtils,
+  PrimeTemplate,
+  SharedModule,
+  UniqueComponentId
+} from "./chunk-Y76JIUY2.js";
 import {
   ChangeDetectionStrategy,
   Component,

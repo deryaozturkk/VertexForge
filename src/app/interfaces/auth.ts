@@ -1,20 +1,24 @@
 export interface UserKurumsal {
-    id:string;
-    name:string;
-    surname:string;
-    email:string;
-    phoneNumber:string;
-    department:string;
-    password:string;
+  id?: string;
+  name: string;
+  surname: string;
+  email: string;
+  phoneNumber: string;
+  department: string;
+  sifre: string;
+  confirmPassword?: string;
 }
+
 export interface User {
-    id:string;
+    id?:string;
     name:string;
     surname:string;
     email:string;
     phoneNumber:string;
     occupation:string;
-    password:string;
+    sifre:string;
+    confirmPassword?: string;
+
 }
 
 export interface List {

@@ -37,8 +37,7 @@ export class RegisterKurumsalComponent {
     department: ['', Validators.required],
     sifre: ['', [Validators.required]],
     confirmPassword: ['', Validators.required]
-  },
-  {
+  }, {
     validators: passwordMatchValidator
   });
 
@@ -62,25 +61,38 @@ export class RegisterKurumsalComponent {
   }
 
   get phoneNumber() {
-     return this.registerKurumsalForm.get('phoneNumber'); 
+    return this.registerKurumsalForm.controls['phoneNumber'];
   }
 
   get department() {
-    return this.registerKurumsalForm.get('department');
+    return this.registerKurumsalForm.controls['department'];
   }
 
-  get password() {
+  get sifre() {
     return this.registerKurumsalForm.controls['sifre'];
   }
 
   get confirmPassword() {
     return this.registerKurumsalForm.controls['confirmPassword'];
   }
-
   submitKurumsalDetails() {
-    const postData = {...this.registerKurumsalForm.value};
-    delete postData.confirmPassword;
-    this.authService.registerkurumsalUser(postData as UserKurumsal).subscribe(
+    // Form değerlerinin kesin olarak string olmasını sağlamak
+    const formValues = this.registerKurumsalForm.value;
+    const postData: UserKurumsal = {
+      name: formValues.name as string,
+      surname: formValues.surname as string,
+      email: formValues.email as string,
+      phoneNumber: formValues.phoneNumber as string,
+      department: formValues.department as string,
+      sifre: formValues.sifre as string // `sifre`yi `password` olarak kullanıyoruz
+    };
+    
+    // Optional alanı güvenle kaldırmak için kontrol ekleyin
+    if (formValues.confirmPassword) {
+      delete postData.confirmPassword;
+    }
+  
+    this.authService.registerkurumsalUser(postData).subscribe(
       response => {
         console.log(response);
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Register Successfully' });
@@ -92,4 +104,5 @@ export class RegisterKurumsalComponent {
       }
     );
   }
-}
+  
+}  

@@ -1,138 +1,75 @@
-<head>
-    <!-- Diğer meta etiketleri buraya gelebilir -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<form [formGroup]="registerKurumsalForm" (ngSubmit)="submitKurumsalDetails()">
-    <p-card header="Register Kurumsal" [style]="{ width: '480px'}">
-
-        <div class="field">
-            <label for="name">Name</label>
-            <input 
-                type="text" 
-                pInputText 
-                formControlName="name" 
-                class="w-full" 
-                name="name" 
-                placeholder="Type your name">
-            <small 
-                *ngIf="registerKurumsalForm.get('name')?.invalid && (registerKurumsalForm.get('name')?.dirty || registerKurumsalForm.get('name')?.touched)" 
-                class="block p-error">
-                <div *ngIf="registerKurumsalForm.get('name')?.errors?.['required']">Name is Required</div>
-                <div *ngIf="registerKurumsalForm.get('name')?.errors?.['pattern']">Enter a valid name</div>
-            </small>
+<form [formGroup]="registerKurumsalForm" (ngSubmit)="submitKurumsalDetails()" class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <h2 class="mb-4">Kurumsal Kayıt</h2>
+            <p class="mb-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis pellentesque metus id lacinia. Nunc dapibus pulvinar auctor.
+            </p>
         </div>
-
-        <div class="field">
-            <label for="surname">Surname</label>
-            <input 
-                type="text" 
-                pInputText 
-                formControlName="surname" 
-                class="w-full" 
-                name="surname" 
-                placeholder="Type your surname">
-            <small 
-                *ngIf="registerKurumsalForm.get('surname')?.invalid && (registerKurumsalForm.get('surname')?.dirty || registerKurumsalForm.get('surname')?.touched)" 
-                class="block p-error">
-                <div *ngIf="registerKurumsalForm.get('surname')?.errors?.['required']">Surname is Required</div>
-                <div *ngIf="registerKurumsalForm.get('surname')?.errors?.['pattern']">Enter a valid surname</div>
-            </small>
+        <div class="col-md-6">
+            <div class="form-row mb-3">
+                <div class="col">
+                    <input type="text" formControlName="name" class="form-control" placeholder="İsim" />
+                    <small *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+                        <div *ngIf="name.errors?.['required']">İsim gereklidir</div>
+                        <div *ngIf="name.errors?.['pattern']">Geçerli bir isim giriniz</div>
+                    </small>
+                </div>
+                <div class="col">
+                    <input type="text" formControlName="surname" class="form-control" placeholder="Soy İsim" />
+                    <small *ngIf="surname.invalid && (surname.dirty || surname.touched)" class="text-danger">
+                        <div *ngIf="surname.errors?.['required']">Soy isim gereklidir</div>
+                        <div *ngIf="surname.errors?.['pattern']">Geçerli bir soy isim giriniz</div>
+                    </small>
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col">
+                    <input type="email" formControlName="email" class="form-control" placeholder="Email" />
+                    <small *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                        <div *ngIf="email.errors?.['required']">Email gereklidir</div>
+                        <div *ngIf="email.errors?.['email']">Geçerli bir email giriniz</div>
+                    </small>
+                </div>
+                <div class="col">
+                    <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Telefon No" />
+                    <small *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="text-danger">
+                        <div *ngIf="phoneNumber.errors?.['required']">Telefon numarası gereklidir</div>
+                        <div *ngIf="phoneNumber.errors?.['pattern']">Geçerli bir telefon numarası giriniz</div>
+                    </small>
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col">
+                    <input type="text" formControlName="department" class="form-control" placeholder="Departman" />
+                    <small *ngIf="department.invalid && (department.dirty || department.touched)" class="text-danger">
+                        <div *ngIf="department.errors?.['required']">Departman gereklidir</div>
+                    </small>
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col">
+                    <input type="password" formControlName="sifre" class="form-control" placeholder="Şifre" />
+                    <small *ngIf="sifre.invalid && (sifre.dirty || sifre.touched)" class="text-danger">
+                        <div *ngIf="sifre.errors?.['required']">Şifre gereklidir</div>
+                    </small>
+                </div>
+                <div class="col">
+                    <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Şifreyi Onaylayın" />
+                    <small *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="text-danger">
+                        <div *ngIf="confirmPassword.errors?.['required']">Şifreyi onaylayın</div>
+                    </small>
+                    <small *ngIf="registerKurumsalForm.errors?.['passwordMismatch'] && confirmPassword.valid && sifre.valid" class="text-danger">
+                        Şifreler uyuşmalı
+                    </small>
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="terms" required>
+                <label class="form-check-label" for="terms">By clicking you agree to the <a href="#">Terms and Conditions</a></label>
+            </div>
+            <p-button type="submit" class="btn btn-primary w-100" [disabled]="registerKurumsalForm.invalid">Kayıt Ol</p-button>
+            <div class="mt-2 text-center">Already a member? <a routerLink="/login">Login</a></div>
         </div>
-          
-        <div class="field">
-            <label for="email">Email</label>
-            <input 
-                type="text" 
-                pInputText 
-                formControlName="email" 
-                class="w-full" 
-                name="email" 
-                placeholder="Type your email">
-            <small 
-                *ngIf="registerKurumsalForm.get('email')?.invalid && (registerKurumsalForm.get('email')?.dirty || registerKurumsalForm.get('email')?.touched)" 
-                class="block p-error">
-                <div *ngIf="registerKurumsalForm.get('email')?.errors?.['required']">Email is Required</div>
-                <div *ngIf="registerKurumsalForm.get('email')?.errors?.['email']">Email should be Valid</div>
-            </small>
-        </div>
-
-        <div class="field">
-            <label for="phoneNumber">Phone Number</label>
-            <input 
-                type="text" 
-                pInputText 
-                formControlName="phoneNumber" 
-                class="w-full" 
-                name="phoneNumber" 
-                placeholder="Type your phone number">
-            <small 
-                *ngIf="registerKurumsalForm.get('phoneNumber')?.invalid && (registerKurumsalForm.get('phoneNumber')?.dirty || registerKurumsalForm.get('phoneNumber')?.touched)" 
-                class="block p-error">
-                <div *ngIf="registerKurumsalForm.get('phoneNumber')?.errors?.['required']">Phone Number is Required</div>
-                <div *ngIf="registerKurumsalForm.get('phoneNumber')?.errors?.['pattern']">Enter a valid phone number</div>
-            </small>
-        </div>
-
-        <div class="field">
-            <label for="department">Department</label>
-            <input 
-                type="text" 
-                pInputText 
-                formControlName="department" 
-                class="w-full" 
-                name="department" 
-                placeholder="Type your department">
-            <small 
-                *ngIf="registerKurumsalForm.get('department')?.invalid && (registerKurumsalForm.get('department')?.dirty || registerKurumsalForm.get('department')?.touched)" 
-                class="block p-error">
-                <div *ngIf="registerKurumsalForm.get('department')?.errors?.['required']">Department is Required</div>
-            </small>
-        </div>
-
-        <div class="field">
-            <label for="password">Password</label>
-            <input 
-                type="password" 
-                pInputText 
-                formControlName="sifre" 
-                class="w-full" 
-                name="password" 
-                placeholder="Type your password">
-            <small 
-                *ngIf="registerKurumsalForm.get('sifre')?.invalid && (registerKurumsalForm.get('sifre')?.dirty || registerKurumsalForm.get('sifre')?.touched)" 
-                class="block p-error">
-                <div *ngIf="registerKurumsalForm.get('sifre')?.errors?.['required']">Password is Required</div>
-            </small>
-        </div>
-        
-        <div class="field">
-            <label for="confirmPassword">Confirm Password</label>
-            <input 
-                type="password" 
-                pInputText 
-                formControlName="confirmPassword" 
-                class="w-full" 
-                name="confirmPassword" 
-                placeholder="Confirm password">
-            <small 
-                *ngIf="registerKurumsalForm.get('confirmPassword')?.invalid && 
-                (registerKurumsalForm.get('confirmPassword')?.dirty || registerKurumsalForm.get('confirmPassword')?.touched)" 
-                class="block p-error">
-                <div *ngIf="registerKurumsalForm.get('confirmPassword')?.errors?.['required']">Confirm the password</div>
-            </small>
-            <small
-                class="block p-error"
-                *ngIf="registerKurumsalForm?.errors?.['passwordMismatch'] && registerKurumsalForm.get('confirmPassword')?.valid && registerKurumsalForm.get('sifre')?.valid">
-                Password should match
-            </small>
-        </div>        
-             
-        <p-button 
-            label="Register Kurumsal" 
-            styleClass="w-full" 
-            [disabled]="registerKurumsalForm.invalid"
-            type="submit">
-        </p-button>
-        
-        <div class="mt-2">Already a member? <a routerLink="/login">Login</a></div>
-        
+    </div>
+</form>

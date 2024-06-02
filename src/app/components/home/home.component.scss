@@ -1,141 +1,231 @@
+/* Container styling */
 .container {
   display: flex;
-  flex-direction: row; /* İçerik yatay olarak hizalansın */
-  justify-content: flex-start; /* İçerik soldan başlayarak hizalansın */
-  align-items: flex-start; /* İçerik üst tarafta hizalansın */
+  flex-direction: column;
   height: 100vh;
+  background-color: #f0f4f8;
+  padding: 20px;
+  box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 }
 
+/* Sidebar styling */
 .sidebar {
-  width: 200px;
-  background-color: #f4f4f4;
-  padding: 10px;
-  border-right: 1px solid #ccc;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    width: 250px;
+    margin-bottom: 0;
+  }
 }
 
 .sidebar h3 {
-  margin-top: 0;
+  margin: 0;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
 }
 
 .sidebar ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .sidebar li {
-  padding: 10px;
-  background-color: #e0e0e0;
-  margin-bottom: 5px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  background-color: #f7f9fc;
+  border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sidebar li:hover {
+  background-color: #e1e9f1;
+}
+
+.sidebar li.selected {
+  background-color: #e0f7e4;
+  font-weight: bold;
 }
 
 .sidebar .add-board-btn {
-  background-color: #b6fcb6;
+  background-color: #007bff;
+  color: #fff;
   border: none;
   padding: 10px;
+  margin-top: 20px;
   cursor: pointer;
   width: 100%;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
-.kanban-board {
-  display: flex;
-  flex-direction: row; /* İçerik yatay olarak hizalansın */
-  flex-wrap: nowrap; /* İçerik sığdığı kadar düz bir şekilde kalsın */
-  justify-content: center; /* İçerik yatayda ortalanmış olsun */
-  padding: 10px;
-  overflow-x: auto;
-  flex-grow: 1;
-}
-
-.column {
-  flex: 1;
-  margin: 0 10px;
-  background-color: #f9f9f9;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-}
-
-.column h3 {
-  margin-top: 0;
-}
-
-.task {
-  background-color: #e0e0e0;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 3px;
-}
-
-.todo {
-  color: red;
-}
-
-.in-progress {
-  color: rgb(0, 157, 255);
-}
-
-.done {
-  color: green;
+.sidebar .add-board-btn:hover {
+  background-color: #0056b3;
 }
 
 .add-board-dialog {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px; /* Ekleme dialogunu biraz aşağı kaydır */
+  margin-top: 20px;
 }
 
 .add-board-dialog input {
-  margin-bottom: 10px; /* Alt boşluk */
-  padding: 10px; /* İç boşluk */
-  border: 1px solid #ccc; /* Kenarlık */
-  border-radius: 3px; /* Köşeleri yuvarla */
-  width: 100%; /* Genişliği tam yap */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: calc(100% - 22px);
+  margin-bottom: 10px;
 }
 
 .dialog-buttons {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  gap: 10px;
 }
 
 .dialog-buttons button {
-  background-color: #4CAF50; /* Yeşil arka plan */
-  color: white; /* Beyaz yazı rengi */
-  border: none;
-  padding: 10px;
-  border-radius: 3px;
-  cursor: pointer;
   flex: 1;
-  margin: 0 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dialog-buttons button:nth-child(1) {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.dialog-buttons button:nth-child(1):hover {
+  background-color: #218838;
 }
 
 .dialog-buttons button:nth-child(2) {
-  background-color: #f44336; /* Kırmızı arka plan */
+  background-color: #f44336;
+  color: #fff;
 }
 
+.dialog-buttons button:nth-child(2):hover {
+  background-color: #d32f2f;
+}
+
+/* Kanban Board styling */
+.kanban-board {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+}
+
+.column {
+  min-width: 280px;
+  padding: 20px;
+  background-color: #f7f9fc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 576px) {
+    min-width: calc(100% - 40px); /* Tam genişlik */
+  }
+
+  @media (min-width: 768px) {
+    min-width: 280px; /* Varsayılan genişlik */
+  }
+}
+
+.column h3 {
+  margin: 0;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.column h3.todo {
+  color: #ff6f61;
+}
+
+.column h3.in-progress {
+  color: #007bff;
+}
+
+.column h3.done {
+  color: #28a745;
+}
+
+.task {
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+
+.task:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Task Board styling */
 .task-board {
-  width: 200px;
-  background-color: #f4f4f4;
-  padding: 10px;
-  border-left: 1px solid #ccc;
-  margin-left: 10px; /* Kanban Board ve Task Board arasında boşluk bırakmak için */
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    width: 250px;
+    margin-bottom: 0;
+    margin-left: 20px;
+  }
 }
 
 .task-board h3 {
-  margin-top: 0;
+  margin: 0;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
 }
 
 .task-board .add-task-btn {
-  background-color: #b6fcb6;
+  background-color: #007bff;
+  color: #fff;
   border: none;
   padding: 10px;
   cursor: pointer;
   width: 100%;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
+.task-board .add-task-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Modal styling */
 .modal {
   display: flex;
   justify-content: center;
@@ -151,13 +241,13 @@
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: auto;
+  background-color: #fff;
   padding: 20px;
+  margin: auto;
   border: 1px solid #888;
+  border-radius: 8px;
   width: 80%;
   max-width: 500px;
-  border-radius: 5px;
 }
 
 .close {
@@ -176,42 +266,44 @@
 
 .modal-content h2 {
   margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
 }
 
 .modal-content label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  color: #333;
 }
 
 .modal-content input,
 .modal-content textarea,
 .modal-content select {
-  width: 100%;
+  width: calc(100% - 22px);
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
-.add-subtask-btn {
-  background-color: #4CAF50; /* Yeşil arka plan */
-  color: white; /* Beyaz yazı rengi */
+.add-subtask-btn,
+.submit-task-btn {
+  background-color: #28a745;
+  color: #fff;
   border: none;
   padding: 10px;
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
   display: block;
   width: 100%;
   margin-bottom: 10px;
+  transition: background-color 0.3s;
 }
 
-.submit-task-btn {
-  background-color: #4CAF50; /* Yeşil arka plan */
-  color: white; /* Beyaz yazı rengi */
-  border: none;
-  padding: 10px;
-  border-radius: 3px;
-  cursor: pointer;
-  width: 100%;
+.add-subtask-btn:hover,
+.submit-task-btn:hover {
+  background-color: #218838;
 }
