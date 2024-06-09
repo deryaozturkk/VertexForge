@@ -5,8 +5,8 @@ const Task = db.task;
 // Görev oluşturma
 export const createTask = async (req, res) => {
     try {
-        const { listId, title, description, status } = req.body;
-        const task = await Task.create({ listId, title, description, status });
+        const { listId, title, description, taskStatuses } = req.body;
+        const task = await Task.create({ listId, title, description, taskStatuses });
         return res.status(201).json({
             message: "Başarılı! Görev başarıyla oluşturuldu!",
             task

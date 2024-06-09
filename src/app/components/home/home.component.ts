@@ -5,15 +5,13 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
-
-interface Task {
-  name: string;
-  description: string;
-  subTasks: string[];
-  status: string;
-}
+import { AuthService } from 'app/services/auth.service';
+import { MessageService } from 'primeng/api';
+import { HttpClientModule } from '@angular/common/http';
+import { Task } from '../../interfaces/auth';
 
 interface Board {
+  id?: number;
   name: string;
   tasks: {
     todo: Task[];
@@ -25,9 +23,10 @@ interface Board {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CardModule, ButtonModule, CommonModule, FormsModule, DragDropModule],
+  imports: [CardModule, ButtonModule, CommonModule, FormsModule, DragDropModule, HttpClientModule],
   templateUrl: './home.component.html',
-  styleUrls: ["./home.component.scss"]
+  styleUrls: ["./home.component.scss"],
+  providers: [MessageService, AuthService]
 })
 export class HomeComponent {
   boards: Board[] = [];
@@ -39,15 +38,17 @@ export class HomeComponent {
   showEditTask: boolean = false;
   newTaskName: string = '';
   newTaskDescription: string = '';
-  newSubTasks: string[] = [''];
+  newListId: string[] = [''];
   newTaskStatus: string = 'Yapılacaklar';
   taskStatuses: string[] = ['Yapılacaklar', 'Şu anda yapılanlar', 'Tamamlananlar'];
-  
+
   editTaskName: string = '';
   editTaskDescription: string = '';
-  editSubTasks: string[] = [];
+  editListId: string[] = [];
   editTaskStatus: string = 'Yapılacaklar';
   selectedTask: Task | null = null;
+
+  constructor(private authService: AuthService, private msgService: MessageService, private router: Router) {}
 
   showAddBoardDialog() {
     this.showAddBoard = true;
@@ -55,14 +56,32 @@ export class HomeComponent {
 
   addBoard() {
     if (this.newBoardName.trim()) {
-      const newBoard: Board = {
-        name: this.newBoardName.trim(),
-        tasks: { todo: [], inProgress: [], done: [] }
+      const newBoard = {
+        boardId: this.selectedBoard ? this.selectedBoard.id ?? 0 : 0,
+        title: this.newBoardName.trim(),
       };
-      this.boards.push(newBoard);
-      this.newBoardName = '';
-      this.showAddBoard = false;
-      this.selectBoard(newBoard);
+
+      this.authService.createList(newBoard).subscribe(
+        (response: any) => {
+          if (response.list) {
+            const createdBoard: Board = {
+              id: response.list.id,
+              name: response.list.title,
+              tasks: { todo: [], inProgress: [], done: [] }
+            };
+            this.boards.push(createdBoard);
+            this.newBoardName = '';
+            this.showAddBoard = false;
+            this.selectBoard(createdBoard);
+            this.msgService.add({ severity: 'success', summary: 'Başarılı', detail: 'Tahta başarıyla oluşturuldu' });
+          } else {
+            this.msgService.add({ severity: 'error', summary: 'Hata', detail: 'Tahta oluşturulamadı' });
+          }
+        },
+        error => {
+          this.msgService.add({ severity: 'error', summary: 'Hata', detail: 'Bir şeyler yanlış gitti' });
+        }
+      );
     }
   }
 
@@ -82,23 +101,34 @@ export class HomeComponent {
   addTask() {
     if (this.newTaskName.trim() && this.selectedBoard) {
       const newTask: Task = {
-        name: this.newTaskName.trim(),
+        title: this.newTaskName.trim(),
         description: this.newTaskDescription,
-        subTasks: this.newSubTasks.filter(subTask => subTask.trim() !== ''),
-        status: this.newTaskStatus
+        listId: this.newListId.filter(listId => listId.trim() !== ''),
+        taskStatuses: this.newTaskStatus
       };
-      switch (this.newTaskStatus) {
-        case 'Yapılacaklar':
-          this.selectedBoard.tasks.todo.push(newTask);
-          break;
-        case 'Şu anda yapılanlar':
-          this.selectedBoard.tasks.inProgress.push(newTask);
-          break;
-        case 'Tamamlananlar':
-          this.selectedBoard.tasks.done.push(newTask);
-          break;
-      }
-      this.resetTaskForm();
+
+      this.authService.createTask(newTask).subscribe(
+        (response: Task) => {
+          if (this.selectedBoard) {
+            switch (this.newTaskStatus) {
+              case 'Yapılacaklar':
+                this.selectedBoard.tasks.todo.push(response);
+                break;
+              case 'Şu anda yapılanlar':
+                this.selectedBoard.tasks.inProgress.push(response);
+                break;
+              case 'Tamamlananlar':
+                this.selectedBoard.tasks.done.push(response);
+                break;
+            }
+            this.resetTaskForm();
+            this.msgService.add({ severity: 'success', summary: 'Başarılı', detail: 'Görev başarıyla eklendi' });
+          }
+        },
+        error => {
+          this.msgService.add({ severity: 'error', summary: 'Hata', detail: 'Görev eklenirken bir hata oluştu' });
+        }
+      );
     }
   }
 
@@ -110,30 +140,38 @@ export class HomeComponent {
     this.showAddTask = false;
     this.newTaskName = '';
     this.newTaskDescription = '';
-    this.newSubTasks = [''];
+    this.newListId = [''];
     this.newTaskStatus = 'Yapılacaklar';
   }
 
   addSubTask() {
-    this.newSubTasks.push('');
+    this.newListId.push('');
   }
 
   editTask(task: Task) {
     this.selectedTask = task;
-    this.editTaskName = task.name;
+    this.editTaskName = task.title;
     this.editTaskDescription = task.description;
-    this.editSubTasks = [...task.subTasks];
-    this.editTaskStatus = task.status;
+    this.editListId = [...task.listId];
+    this.editTaskStatus = task.taskStatuses;
     this.showEditTask = true;
   }
 
   updateTask() {
     if (this.selectedTask) {
-      this.selectedTask.name = this.editTaskName;
-      this.selectedTask.description = this.editTaskDescription;
-      this.selectedTask.subTasks = this.editSubTasks.filter(subTask => subTask.trim() !== '');
-      this.selectedTask.status = this.editTaskStatus;
-      this.showEditTask = false;
+      this.authService.updateTask(this.selectedTask).subscribe(
+        (response: Task) => {
+          this.selectedTask!.title = this.editTaskName;
+          this.selectedTask!.description = this.editTaskDescription;
+          this.selectedTask!.listId = this.editListId.filter(listId => listId.trim() !== '');
+          this.selectedTask!.taskStatuses = this.editTaskStatus;
+          this.showEditTask = false;
+          this.msgService.add({ severity: 'success', summary: 'Başarılı', detail: 'Görev başarıyla güncellendi' });
+        },
+        error => {
+          this.msgService.add({ severity: 'error', summary: 'Hata', detail: 'Görev güncellenirken bir hata oluştu' });
+        }
+      );
     }
   }
 
@@ -142,7 +180,7 @@ export class HomeComponent {
   }
 
   addEditSubTask() {
-    this.editSubTasks.push('');
+    this.editListId.push('');
   }
 
   drop(event: CdkDragDrop<Task[]>) {

@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User, UserKurumsal, List} from '../interfaces/auth';
-import { Task } from '@models/Task';
+import { Task } from '../interfaces/auth';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   createTask(task: Task): Observable<Task> {
-    return this.http.post<Task>(`${this.baseUrl}/createTask`, task);
+    return this.http.post<Task>(`${this.baseUrl}/task/createTask`, task);
   }
 
   updateTask(task: Task): Observable<Task> {
@@ -62,7 +62,12 @@ updateList(list: List): Observable<List> {
 deleteList(id: number): Observable<void> {
   return this.http.delete<void>(`${this.baseUrl}/list/deleteList/${id}`);
 }
-
+getUserData(): Observable<User> {
+  return this.http.get<User>(`${this.baseUrl}/auth/user`);
+}
+updateUser(user: User): Observable<any> {
+  return this.http.put(`${this.baseUrl}/auth/updateuser`, user);
+}
 }
 
 

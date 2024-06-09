@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { AuthService } from '../../services/auth.service';
-import { Task } from '@models/Task';
+import { Task } from '../../interfaces/auth';
 
 @Component({
   selector: 'app-task-list',
@@ -29,11 +29,11 @@ export class TaskListComponent implements OnInit {
   }
 
   getTasksByStatus(status: string): Task[] {
-    return this.tasks.filter(task => task.status === status);
+    return this.tasks.filter(task => task.taskStatuses === status);
   }
 
   updateTaskStatus(task: Task, status: string) {
-    task.status = status;
+    task.taskStatuses = status;
     this.authService.updateTask(task).subscribe(updatedTask => {
       this.fetchData();
     });

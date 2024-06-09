@@ -1,16 +1,10 @@
-import dbConfig from '../config/config.js';
 import { Sequelize, DataTypes } from 'sequelize';
+import dbConfig from '../config/config.js';
 import bireyselModel from './Bireysel.js';
 import kurumsalModel from './Kurumsal.js';
 import TaskModel from './Task.js';
 import ListModel from './List.js';
-//import studentCounterModel from './StudentCounter.js';
-/*
-  Sequelize için yapılandırma dosyasını çağırdık.
-*/
-/*
-  Sequelize modülünü çağırdık.
-*/
+
 const sequelize = new Sequelize(
     dbConfig.DB,
     dbConfig.USER,
@@ -22,77 +16,38 @@ const sequelize = new Sequelize(
             min: dbConfig.pool.min,
             acquire: dbConfig.pool.acquire,
             idle: dbConfig.pool.idle
-
         },
         logging: dbConfig.loggingLevel
-
     }
-)
-/* 'const sequelize' nedir:
-  Sequelize ile veritabanına bağlantı nesnesi oluşturduk.
-*/
+);
 
 sequelize.authenticate()
-  .then(() => {
-      console.log('connected..')
-  })
-  .catch(err => {
-      console.log('Error'+ err)
-  });
-/* 'sequelize.authenticate()' açıklaması:
-  Veritabanına bağlantıyı kurulup-kurulamadığını doğruladık.
-  Not: dbConfig.DB referansı oluşturduğumuz veritabanı adını gösteriyor. Bu isimde bir veritabnının önceden oluşturulmuş olması gerekiyor.
-*/
+    .then(() => {
+        console.log('connected..');
+    })
+    .catch(err => {
+        console.log('Error' + err);
+    });
 
-const db = {};
+const db = {
+    Sequelize,
+    sequelize,
+    bireysel: bireyselModel(sequelize, DataTypes),
+    kurumsal: kurumsalModel(sequelize, DataTypes),
+    task: TaskModel(sequelize, DataTypes),
+    list: ListModel(sequelize, DataTypes),
+};
 
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
-
-
-
-db.bireysel = bireyselModel(sequelize, DataTypes);
-db.kurumsal = kurumsalModel(sequelize, DataTypes);
-db.task = TaskModel(sequelize, DataTypes);
-db.list = ListModel(sequelize, DataTypes);
-//db.studentCounter = studentCounterModel(sequelize, DataTypes);
-
-/* Yeni modelleri veri tabanına ekleme işlemleri:
-  Yeni eklenecek tabloları buraya ekleyeceğiz.
-  veritabanına stdudent şemasını(nesnesini) ekledik.
-*/
-
-
-// Set up associations
-//db.student.belongsTo(db.department, {
-  //foreignKey: 'deptid',
-  //as: 'department', 
-//});
 Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-      db[modelName].associate(db);
-  }
+    if (db[modelName].associate) {
+        db[modelName].associate(db);
+    }
 });
 
-//db.department.hasMany(db.student, {
-  //foreignKey: 'deptid',
-  //as: 'students', 
-//});
-
-
-db.sequelize.sync({ force: false}).then(() => {
-  console.log('Veritabanı başarıyla oluşturuldu.');
+db.sequelize.sync({ force: false }).then(() => {
+    console.log('Veritabanı başarıyla oluşturuldu.');
 }).catch(err => {
-  console.error('Veritabanını oluştururken bir hata oluştu:', err);
+    console.error('Veritabanını oluştururken bir hata oluştu:', err);
 });
-
-/* 'db.sequelize.sync' açıklaması:
-  Sequelize nesnemize eklediğimiz tabloları(nesne özelliği gösteriyor), veritabanında oluşturduk.
-  'force: true' olursa sürekli tabloyu silip yeniden oluşturur.
-  'force: false' olursa tablo yoksa oluşturur varsa oluşturmaz. Fakat tablo yapısında değişiklik olunca tabloyu güncellemiyor.(bunu araştırıcam şimdilik true kullanalım.)
-*/
 
 export default db;
-/*
- Tüm configrasyonnlarımızı tutan db nesnesini dışarıya return ettik.
-*/

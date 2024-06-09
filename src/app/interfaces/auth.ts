@@ -26,3 +26,11 @@ export interface List {
   boardId: number;
   title: string;
 }
+export interface Task {
+  // Task türüne ait alanlar buraya eklenebilir
+  id?: number;
+  title: string;
+  description: string;
+  taskStatuses: string;
+  listId: string[];
+}

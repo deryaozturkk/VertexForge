@@ -1,23 +1,22 @@
 export default (sequelize, DataTypes) => {
-    const Task = sequelize.define("task", {
+    const Task = sequelize.define("Task", {
         title: {
             type: DataTypes.STRING,
             allowNull: false
         },
         description: {
-            type: DataTypes.TEXT,
+            type: DataTypes.STRING,
             allowNull: true
         },
-        status: {
-            type: DataTypes.ENUM,
-            values: ['to-do', 'in progress', 'done'],
+        taskStatuses: {
+            type: DataTypes.ENUM('Yapılacaklar', 'Şu anda yapılanlar', 'Tamamlananlar'),
             allowNull: false
         },
         listId: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'lists',
+                model: 'Lists',
                 key: 'id'
             },
             onDelete: 'CASCADE',

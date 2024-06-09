@@ -42,12 +42,18 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
         CommonModule,
         BrowserAnimationsModule,
         NavbarComponent,
-        HttpClientModule
-        
+        HttpClientModule,
+        RouterModule.forRoot([
+            { path: '', component: HomeComponent },
+            { path: 'login', component: LoginComponent },
+            { path: 'register', component: RegisterComponent },
+            { path: 'register-kurumsal', component: RegisterKurumsalComponent },
+            { path: 'task-list', component: TaskListComponent }
+          ]),        
     ],
     providers: [
         MessageService,
-        AuthService,          
+        AuthService     
     ],
     //bootstrap :[AppComponent]
     // önceden çalışıyodu ama hata verdiği için chatgptnin sözü ile kapattım

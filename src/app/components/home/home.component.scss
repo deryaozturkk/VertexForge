@@ -4,7 +4,7 @@
   flex-direction: column;
   height: 100vh;
   background-color: #f0f4f8;
-  padding: 20px;
+  padding: 0;
   box-sizing: border-box;
 
   @media (min-width: 768px) {
@@ -24,6 +24,8 @@
   @media (min-width: 768px) {
     width: 250px;
     margin-bottom: 0;
+    margin-right: 20px;
+    margin-left: 20px;
   }
 }
 
@@ -138,19 +140,14 @@
 }
 
 .column {
-  min-width: 280px;
+  flex:1;
+  min-width: 200px;
   padding: 20px;
   background-color: #f7f9fc;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  @media (min-width: 576px) {
-    min-width: calc(100% - 40px); /* Tam genişlik */
-  }
-
-  @media (min-width: 768px) {
-    min-width: 280px; /* Varsayılan genişlik */
-  }
+  display:flex;
+  flex-direction: column;
 }
 
 .column h3 {
@@ -199,6 +196,7 @@
     width: 250px;
     margin-bottom: 0;
     margin-left: 20px;
+    margin-right: 20px;
   }
 }
 

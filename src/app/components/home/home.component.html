@@ -24,19 +24,19 @@
     <div class="column" cdkDropList [cdkDropListData]="selectedBoard.tasks.todo" (cdkDropListDropped)="drop($event)">
       <h3 class="todo">Yapılacaklar ({{ selectedBoard.tasks.todo.length }})</h3>
       <div *ngFor="let task of selectedBoard.tasks.todo" class="task" cdkDrag (dblclick)="editTask(task)">
-        {{ task.name }}
+        {{ task.title }}
       </div>
     </div>
     <div class="column" cdkDropList [cdkDropListData]="selectedBoard.tasks.inProgress" (cdkDropListDropped)="drop($event)">
       <h3 class="in-progress">Şu anda yapılanlar ({{ selectedBoard.tasks.inProgress.length }})</h3>
       <div *ngFor="let task of selectedBoard.tasks.inProgress" class="task" cdkDrag (dblclick)="editTask(task)">
-        {{ task.name }}
+        {{ task.title }}
       </div>
     </div>
     <div class="column" cdkDropList [cdkDropListData]="selectedBoard.tasks.done" (cdkDropListDropped)="drop($event)">
       <h3 class="done">Tamamlananlar ({{ selectedBoard.tasks.done.length }})</h3>
       <div *ngFor="let task of selectedBoard.tasks.done" class="task" cdkDrag (dblclick)="editTask(task)">
-        {{ task.name }}
+        {{ task.title }}
       </div>
     </div>
   </div>
@@ -61,11 +61,11 @@
       <label for="taskDescription">Açıklama</label>
       <textarea id="taskDescription" [(ngModel)]="newTaskDescription" name="taskDescription" placeholder="Örnek Açıklama" required></textarea>
 
-      <label for="subTasks">Alt Görevler</label>
-      <div *ngFor="let subTask of newSubTasks; let i = index">
-        <input type="text" [(ngModel)]="newSubTasks[i]" name="subTask{{ i }}" placeholder="Örnek Alt Görev">
+      <label for="listId">board numarası</label>
+      <div *ngFor="let listId of newListId; let i = index">
+        <input type="text" [(ngModel)]="newListId[i]" name="listId{{ i }}" placeholder="örnek board numarası = 1">
       </div>
-      <button type="button" class="add-subtask-btn" (click)="addSubTask()">+ Yeni Alt Görev Ekle</button>
+      <button type="button" class="add-subtask-btn" (click)="addSubTask()">+ board numarası ekle</button>
 
       <label for="taskStatus">Mevcut Durum</label>
       <select id="taskStatus" [(ngModel)]="newTaskStatus" name="taskStatus" required>
@@ -90,8 +90,8 @@
       <textarea id="editTaskDescription" [(ngModel)]="editTaskDescription" name="editTaskDescription" required></textarea>
 
       <label for="editSubTasks">Alt Görevler</label>
-      <div *ngFor="let subTask of editSubTasks; let i = index">
-        <input type="text" [(ngModel)]="editSubTasks[i]" name="editSubTask{{ i }}">
+      <div *ngFor="let subTask of editListId; let i = index">
+        <input type="text" [(ngModel)]="editListId[i]" name="editSubTask{{ i }}">
       </div>
       <button type="button" class="add-subtask-btn" (click)="addEditSubTask()">+ Yeni Alt Görev Ekle</button>
 

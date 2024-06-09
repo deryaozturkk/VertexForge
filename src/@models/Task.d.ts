@@ -1,4 +1,4 @@
-declare module '@models/Task' {
+/*declare module '@models/Task' {
     export interface Task {
       // Task türüne ait alanlar buraya eklenebilir
       id: number;
@@ -8,4 +8,4 @@ declare module '@models/Task' {
       listId: number;
     }
   }
-  
+  */
